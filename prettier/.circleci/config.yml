@@ -1,5 +1,9 @@
 version: 2.1
 
+parameters:
+  build:
+    type: boolean
+
 jobs:
   say-hello:
     docker:
