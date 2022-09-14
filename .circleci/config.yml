@@ -1,25 +1,13 @@
 version: 2.1
-setup: true
 
 orbs:
   path-filtering: circleci/path-filtering@0.1.3
 
-jobs:
-  continue:
-    parameters:
-      project:
-        type: string
-    steps:
-      - path-filtering/filter:
-          base-revision: main
-          config-path: <<parameters.project>>/.circleci/config.yml
-          mapping: |
-            <<parameters.project>>/.* build true
-
 workflows:
   main:
     jobs:
-      - continue:
-          matrix:
-            parameters:
-              project: [prettier]
+      - path-filtering/filter:
+          base-revision: main
+          config-path: prettier/.circleci/config.yml
+          mapping: |
+            prettier/.* build true
