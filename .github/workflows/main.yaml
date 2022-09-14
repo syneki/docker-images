@@ -1,0 +1,23 @@
+name: Build and push
+
+on: [push]
+
+jobs:
+  runner:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: [prettier]
+    steps:
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            ${{ matrix.project }}:
+              - '${{ matrix.project }}/**'
+      - name: Invoke workflow
+        if: steps.changes.outputs.${{ matrix.project }} == 'true'
+        uses: aurelien-baudet/workflow-dispatch@v2
+        with:
+          workflow: ${{ matrix.project }}
+          token: ${{ secrets.CR_PAT }}
