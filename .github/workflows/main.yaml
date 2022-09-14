@@ -22,3 +22,4 @@ jobs:
         with:
           workflow: ${{ matrix.project }}
           token: ${{ secrets.CR_PAT }}
+          wait-for-completion: false
