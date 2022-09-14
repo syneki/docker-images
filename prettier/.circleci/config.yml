@@ -3,6 +3,8 @@ version: 2.1
 workflows:
   main:
     jobs:
-      - run:
-          name: Hello world
-          command: echo "Hello world"
+      greet:
+        steps:
+          - run:
+              name: Hello world
+              command: echo "Hello world"
